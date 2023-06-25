@@ -58,10 +58,19 @@ In cases  we want to check the detail which reactive value is being changes we c
 'https://vuejs.org/guide/extras/rendering-mechanism.html'
 The vue uses **Virtual DOM** to do it and it a **concept** not qa tech  pioneered by the **React** to keep the dom tree copy in memory and then locating where the changes to be done
 
-The templates are complied to the render function whic reutn dom  tree
+The templates are complied to the render function whic return dom  tree
 
 **vnode** is a virtual node for a respective **DOM NOde**
 
 At runtime **Renderer** it will tranverse and accordindly build the **DOM NODES** were created
 
-After the nodes are builded than the **Renderer** might find the difference between old and new dom tree as it will have to find out what part has been chnaged due to **Side Effects** like (Network call , callBack timers , update of state) and render accordindly this is where the DOM nodes are + 
+After the nodes are builded than the **Renderer** might find the difference between old and new dom tree as it will have to find out what part has been chnaged due to **Side Effects** like (Network call , callBack timers , update of state) and render accordindly according the place of change its called **patch or reconcilation**.
+
+
+At high level this happens :
+![Rendering Image](render-pipeline.png "Title")
+- Compile: Vue templates are complie into render function  that return the vnode tree  .It can be done complie time , build time , run time or ahead of time as well.
+
+- Mount: These render method is invoked and actual dom Node is created.Here the reactivit dependy also tracked
+
+- Patch: Whenever side effects happens or reatcivity depency triggers the render function is re run and new virtual DOM is created and compared with the old one 
