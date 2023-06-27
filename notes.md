@@ -74,3 +74,21 @@ At high level this happens :
 - Mount: These render method is invoked and actual dom Node is created.Here the reactivit dependy also tracked
 
 - Patch: Whenever side effects happens or reatcivity depency triggers the render function is re run and new virtual DOM is created and compared with the old one 
+
+
+### Template vs Render Function
+
+You can skip the tempalte compalition and dirextly access render function api and they more flexible in nature for high dynamic sort of work and more dynamic logic can be written 
+
+So the virtual DOM implementation part happens only at the run time as the virtual dom can't predicated earlier and every  time some changes happens a whole new dome tree is created and then the **recoil**(diff) algo is used but the extra memory space is used this is the most critized or drawback of this **Vurtual dom** . But vue js optimized it 
+
+## Static Hoisting
+The nodes that contain static content are hoisted i.e they are nodes are created outside the render function so that each time they run they are refer to same node and if they are used somewhere else they are **clone**
+
+## Patch Flag
+For dynamic  attribute the patch flag are used so to check whether a rework is required or not
+
+## Tree flatting
+
+The vnode will have lots of children and each render ist will have to go through it but thanks to **createElementBlock** function and patch flag only those nodes who are using dynamic value / attribute and are returned as **flattened array** and the exact are vnodes to be target   
+
