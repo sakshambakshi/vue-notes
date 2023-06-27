@@ -213,6 +213,27 @@ For that you will use **Named Slots**
 </template>
 ```
 
+---
+### Scopped Slots
+As said earlier the content inside will be able to access parent scope within the component .But sometime/ manytime we need to access some of the child Data in that case what to do ??
+So in that case the **Child Component will expose the data** and the parent component will access via **v-slot**
+![Scopped Slots](scoped-slots.svg "Title")
+#### example
+```html
+<Child>
+<slot v-expose_data="$data.propName" />
+</Child>
+
+<Parent>
+<Child>
+<template #default v-slot="childData">
+{{childData.expose_data}}
+</template>
+</Child>
+</Parent>
+
+``` 
+
 
  
 
