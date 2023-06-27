@@ -92,3 +92,13 @@ For dynamic  attribute the patch flag are used so to check whether a rework is r
 
 The vnode will have lots of children and each render ist will have to go through it but thanks to **createElementBlock** function and patch flag only those nodes who are using dynamic value / attribute and are returned as **flattened array** and the exact are vnodes to be target   
 
+
+
+### Shallow Reqactivity
+
+### Shallow ref
+
+### Automatically unwrapping ref
+
+### Downside withj reactivity
+
