@@ -116,7 +116,35 @@ It use for chching
 
 
 ### Teleport 
-Many a time by logical a componenet is a child of the parent component by in the tyerm or point of view it will have a different node like for example of a **modal** you use **<Teleport> component** you provide the **css selector DOM Nodes where you component needs to be injected visually outside the normal Dom** 
+Many a time by logical a componenet is a child of the parent component by in the tyerm or point of view it will have a different node like for example of a **modal** you use **<Teleport> component** you provide the **css selector DOM Nodes where you component needs to be injected visually outside the normal Dom** .
 
+
+### KeepAlive
+This component is used to cache component instances when switching to multiple component .So for example:
+```js
+<template>
+    <component :is="activeComponent" />
+    
+</template>
+
+```
+ so wheneve the isActyive is changed the old componet is unkounted and all  its local state is lost.But to cache you can use. 
  
+```js
+ <KeepAlive>
+  <component :is="activeComponent" />
+ </KeepAlive>
+ ``` 
+ So  if the activeComponent contains a form and when it gets unmounted its local state gets deleted as in the first example but in the second exmplae its previous component state are cached. 
+ 
+ You can limit the caching by **name of the componnet  or by the number which follows ""LRU""**
+ 
+ And now consider if you want to detect when the componnet is getting mounted on unmounted which will not be once the componnet is added there are two states for it **Activated and Deactivated** **onActivated()**  **onDeactivated()**
+
+
+
+### Suspense
+Th
+
+
 
