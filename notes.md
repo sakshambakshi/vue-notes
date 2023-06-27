@@ -105,10 +105,10 @@ As soon as something is updated immedtaley all things  are not pushed to the Dom
 
 ### Automatically unwrapping ref
 
-### Downside withj reactivity
+### Downside with reactivity
 
 ### Computed property
-It use for chching 
+It use for caching 
 
 - To update something use Writtable computation property.
 - Avoid Mutation in the computed property .
@@ -116,7 +116,11 @@ It use for chching
 
 
 ## Async components
-In large component we need  to optize our frontend and we need to ship smaller and required chunks to the user rather than big chunks for what we do we use **asyncComponent**  
+In large component we need  to optize our frontend and we need to ship smaller and required chunks to the user rather than big chunks for what we do we use **defineAsyncComponent** , it provideds the optyions for the **loader error and also supperot ES5 file import support**  . It also support all slot and props support. It proviodes **Suspense Support**
+- The Suspense can controll the loading state of the Child Async Component  and its **loading dewaly error timeout** will be **ignored**. You can opt out by using 
+```js
+{suspensible: false }
+```
 
 
 
@@ -147,9 +151,39 @@ This component is used to cache component instances when switching to multiple c
  And now consider if you want to detect when the componnet is getting mounted on unmounted which will not be once the componnet is added there are two states for it **Activated and Deactivated** **onActivated()**  **onDeactivated()**
 
 
-
+---
 ### Suspense
-Th
+The suspense is built in componnet **to handle the Async Depdencied**
+- Async Component
+- Async Setup (& the await inside <script setup> is considered the same )
+
+It takse the Components as a Default props two more named slots 
+**#fallback and #default** 
+
+There are 3 events in slots same as **Promise** 
+- Pending
+- Resolve
+- Rejected
+
+
+
+---
+## Slots
+The slots are a way to inject dynamic content in the child component for exaple you want to add dynamic content in form Lable complnent with a span with * without the help of lsots you might need to do it in hard coded way or via **v-html** which will not as per the needs 
+```html
+//example
+
+<FormLabel>
+<!-- You have Form Label Componet -->
+<span @click="someDynamicFunction">Enter Name  </span>
+<span>Some Other Dynamic Text/Markup/Content And can access the parent component scope</span>
+</FormLabel>
+
+
+```
+
+
+
 
 
 
