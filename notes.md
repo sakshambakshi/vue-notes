@@ -115,6 +115,11 @@ It use for chching
 - Avoid use asuync or network calls inside the the computred property these are to be done under the **watchers**
 
 
+## Async components
+In large component we need  to optize our frontend and we need to ship smaller and required chunks to the user rather than big chunks for what we do we use **asyncComponent**  
+
+
+
 ### Teleport 
 Many a time by logical a componenet is a child of the parent component by in the tyerm or point of view it will have a different node like for example of a **modal** you use **<Teleport> component** you provide the **css selector DOM Nodes where you component needs to be injected visually outside the normal Dom** .
 
