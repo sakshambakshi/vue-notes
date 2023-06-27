@@ -191,6 +191,7 @@ There are different Kinds of Slots
 ### Named Slots 
 Image You creating the Image Couasel (Image Slider) component you need to pass  the Slider Text Content Header and discription via Slots in two different seprate places .
 For that you will use **Named Slots**
+![Name Slots](named-slots.png "Name Slots")
 
 ```html
 <!-- Parent Componet -->
@@ -200,15 +201,14 @@ For that you will use **Named Slots**
 <template #description></template>
 </ImageCoursel>
 
-
 <!-- ------------ -->
 <!-- Child Component  -->
 <template>
 <div class="heading">
-    
+    <slot name="heading">
 </div>
 <div class="description">
-    
+    <slot name="description">
 </div>
 </template>
 ```
