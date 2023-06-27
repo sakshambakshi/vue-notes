@@ -78,7 +78,7 @@ At high level this happens :
 
 ### Template vs Render Function
 
-You can skip the tempalte compalition and dirextly access render function api and they more flexible in nature for high dynamic sort of work and more dynamic logic can be written 
+You can skip the template compalition and dirextly access render function api and they more flexible in nature for high dynamic sort of work and more dynamic logic can be written 
 
 So the virtual DOM implementation part happens only at the run time as the virtual dom can't predicated earlier and every  time some changes happens a whole new dome tree is created and then the **recoil**(diff) algo is used but the extra memory space is used this is the most critized or drawback of this **Vurtual dom** . But vue js optimized it 
 
@@ -190,7 +190,29 @@ There are different Kinds of Slots
 
 ### Named Slots 
 Image You creating the Image Couasel (Image Slider) component you need to pass  the Slider Text Content Header and discription via Slots in two different seprate places .
-For that you will use **Name Slots**
+For that you will use **Named Slots**
+
+```html
+<!-- Parent Componet -->
+
+<ImageCoursel>
+<template #heading></template>
+<template #description></template>
+</ImageCoursel>
+
+
+<!-- ------------ -->
+<!-- Child Component  -->
+<template>
+<div class="heading">
+    
+</div>
+<div class="description">
+    
+</div>
+</template>
+```
+
 
  
 
