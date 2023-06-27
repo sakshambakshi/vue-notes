@@ -181,7 +181,18 @@ The slots are a way to inject dynamic content in the child component for exaple 
 <IconComponent />
 </FormLabel>
 ```
+It make componnets **more re-usable and more dynamic** in nature 
 
+**You can Access Parent Component Scope iBy default in Slots**
+
+
+There are different Kinds of Slots 
+
+### Named Slots 
+Image You creating the Image Couasel (Image Slider) component you need to pass  the Slider Text Content Header and discription via Slots in two different seprate places .
+For that you will use **Name Slots**
+
+ 
 
 
 
