@@ -114,6 +114,7 @@ It use for caching
 - Avoid Mutation in the computed property .
 - Avoid use asuync or network calls inside the the computred property these are to be done under the **watchers**
 
+**Use of the array mutation methods be avoided inside the copmputation cb function as now sideeffects should be created** 
 
 ## Async components
 In large component we need  to optize our frontend and we need to ship smaller and required chunks to the user rather than big chunks for what we do we use **defineAsyncComponent** , it provideds the optyions for the **loader error and also supperot ES5 file import support**  . It also support all slot and props support. It proviodes **Suspense Support**
