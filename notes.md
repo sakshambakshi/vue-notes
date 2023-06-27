@@ -177,9 +177,9 @@ The slots are a way to inject dynamic content in the child component for exaple 
 <!-- You have Form Label Componet -->
 <span @click="someDynamicFunction">Enter Name  </span>
 <span>Some Other Dynamic Text/Markup/Content And can access the parent component scope</span>
+<YouCanPassSomeCustomComponent />
+<IconComponent />
 </FormLabel>
-
-
 ```
 
 
