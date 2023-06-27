@@ -92,3 +92,31 @@ For dynamic  attribute the patch flag are used so to check whether a rework is r
 
 The vnode will have lots of children and each render ist will have to go through it but thanks to **createElementBlock** function and patch flag only those nodes who are using dynamic value / attribute and are returned as **flattened array** and the exact are vnodes to be target   
 
+
+### Dom Updating nexttick
+As soon as something is updated immedtaley all things  are not pushed to the Dom node in synchholosuly mkanner Vue run a update cycle and all the changes are buffered and updated in that update cycle .To detect the cycle  ` use **nextTick** 
+
+
+### ref vs reactive
+
+### Shallow Reqactivity
+
+### Shallow ref
+
+### Automatically unwrapping ref
+
+### Downside withj reactivity
+
+### Computed property
+It use for chching 
+
+- To update something use Writtable computation property.
+- Avoid Mutation in the computed property .
+- Avoid use asuync or network calls inside the the computred property these are to be done under the **watchers**
+
+
+### Teleport 
+Many a time by logical a componenet is a child of the parent component by in the tyerm or point of view it will have a different node like for example of a **modal** you use **<Teleport> component** you provide the **css selector DOM Nodes where you component needs to be injected visually outside the normal Dom** 
+
+ 
+
