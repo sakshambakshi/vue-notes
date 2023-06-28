@@ -70,7 +70,30 @@ After the nodes are builded than the **Renderer** might find the difference betw
 At high level this happens :
 ![Rendering Image](render-pipeline.png "Title")
 - Compile: Vue templates are complie into render function  that return the vnode tree  .It can be done complie time , build time , run time or ahead of time as well.
-
 - Mount: These render method is invoked and actual dom Node is created.Here the reactivit dependy also tracked
-
 - Patch: Whenever side effects happens or reatcivity depency triggers the render function is re run and new virtual DOM is created and compared with the old one 
+- Tree flatten: Only those nodes are flatten that contain some static value 
+
+## Reactivity basics
+For basic reactivity purposes **ref**  are used whic expose the **.value** to access and mutate but in **template it's automatically unwrap**.In standard way of js there is no way to detect changes so thats whuy ref retyurn an object where the .value mutation and access can be detecyedd .
+**Ref** can hold nested  object and they are changes can be tracked at nested level . For the **non-premitive** property are converted to **reactive proxies** underhood.The **ref should be used to hold the  primitive value**
+And to optimize and opt-out of the deep reactivity use **shallow refs**
+
+### nexTick
+The Changes are immediactely not sync with the DOM nodes or not in a synchonosuly manner .It has a update cycle and during that cycle it updates all the changes no manner hiw many changes hjappened .
+If you want to wait for the DOM updates use await nextTick()
+
+## reactive
+reactive function return javascript proxy object with nested property support as well even **ref** uses  it for an object .
+As we have **shallowRef we also have shallowReactive for reactive** opt out of deep reactivity
+
+The object passed tpo the reactivit and the objext we getr seems similar but they are not as what you get is a proxy object and its different in both way by value and by reference 
+
+### LIMITATION OF **REACTIVE**
+- Its used for objects or collection like object , array , Map and set not for premitive.
+- Cannot replace entrie onject https://vuejs.org/guide/essentials/reactivity-fundamentals.html#limitations-of-reactive
+- If you destructure the property you will loose the reactivity
+
+
+### Ref Unwrapping in details
+https://vuejs.org/guide/essentials/reactivity-fundamentals.html#additional-ref-unwrapping-details 
