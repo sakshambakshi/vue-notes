@@ -78,7 +78,7 @@ At high level this happens :
 
 ### Template vs Render Function
 
-You can skip the tempalte compalition and dirextly access render function api and they more flexible in nature for high dynamic sort of work and more dynamic logic can be written 
+You can skip the template compalition and dirextly access render function api and they more flexible in nature for high dynamic sort of work and more dynamic logic can be written 
 
 So the virtual DOM implementation part happens only at the run time as the virtual dom can't predicated earlier and every  time some changes happens a whole new dome tree is created and then the **recoil**(diff) algo is used but the extra memory space is used this is the most critized or drawback of this **Vurtual dom** . But vue js optimized it 
 
@@ -105,18 +105,130 @@ As soon as something is updated immedtaley all things  are not pushed to the Dom
 
 ### Automatically unwrapping ref
 
-### Downside withj reactivity
+### Downside with reactivity
 
 ### Computed property
-It use for chching 
+It use for caching 
 
 - To update something use Writtable computation property.
 - Avoid Mutation in the computed property .
 - Avoid use asuync or network calls inside the the computred property these are to be done under the **watchers**
 
+**Use of the array mutation methods be avoided inside the copmputation cb function as now sideeffects should be created** 
+
+## Async components
+In large component we need  to optize our frontend and we need to ship smaller and required chunks to the user rather than big chunks for what we do we use **defineAsyncComponent** , it provideds the optyions for the **loader error and also supperot ES5 file import support**  . It also support all slot and props support. It proviodes **Suspense Support**
+- The Suspense can controll the loading state of the Child Async Component  and its **loading dewaly error timeout** will be **ignored**. You can opt out by using 
+```js
+{suspensible: false }
+```
+
+
 
 ### Teleport 
-Many a time by logical a componenet is a child of the parent component by in the tyerm or point of view it will have a different node like for example of a **modal** you use **<Teleport> component** you provide the **css selector DOM Nodes where you component needs to be injected visually outside the normal Dom** 
+Many a time by logical a componenet is a child of the parent component by in the tyerm or point of view it will have a different node like for example of a **modal** you use **<Teleport> component** you provide the **css selector DOM Nodes where you component needs to be injected visually outside the normal Dom** .
 
+
+### KeepAlive
+This component is used to cache component instances when switching to multiple component .So for example:
+```js
+<template>
+    <component :is="activeComponent" />
+    
+</template>
+
+```
+ so wheneve the isActyive is changed the old componet is unkounted and all  its local state is lost.But to cache you can use. 
  
+```js
+ <KeepAlive>
+  <component :is="activeComponent" />
+ </KeepAlive>
+ ``` 
+ So  if the activeComponent contains a form and when it gets unmounted its local state gets deleted as in the first example but in the second exmplae its previous component state are cached. 
+ 
+ You can limit the caching by **name of the componnet  or by the number which follows ""LRU""**
+ 
+ And now consider if you want to detect when the componnet is getting mounted on unmounted which will not be once the componnet is added there are two states for it **Activated and Deactivated** **onActivated()**  **onDeactivated()**
 
+
+---
+### Suspense
+The suspense is built in componnet **to handle the Async Depdencied**
+- Async Component
+- Async Setup (& the await inside <script setup> is considered the same )
+
+It takse the Components as a Default props two more named slots 
+**#fallback and #default** 
+
+There are 3 events in slots same as **Promise** 
+- Pending
+- Resolve
+- Rejected
+
+
+
+---
+## Slots
+The slots are a way to inject dynamic content in the child component for exaple you want to add dynamic content in form Lable complnent with a span with * without the help of lsots you might need to do it in hard coded way or via **v-html** which will not as per the needs 
+```html
+//example
+
+<FormLabel>
+<!-- You have Form Label Componet -->
+<span @click="someDynamicFunction">Enter Name  </span>
+<span>Some Other Dynamic Text/Markup/Content And can access the parent component scope</span>
+<YouCanPassSomeCustomComponent />
+<IconComponent />
+</FormLabel>
+```
+It make componnets **more re-usable and more dynamic** in nature 
+
+**You can Access Parent Component Scope iBy default in Slots**
+
+
+There are different Kinds of Slots 
+
+### Named Slots 
+Image You creating the Image Couasel (Image Slider) component you need to pass  the Slider Text Content Header and discription via Slots in two different seprate places .
+For that you will use **Named Slots**
+![Name Slots](named-slots.png "Name Slots")
+
+```html
+<!-- Parent Componet -->
+
+<ImageCoursel>
+<template #heading></template>
+<template #description></template>
+</ImageCoursel>
+
+<!-- ------------ -->
+<!-- Child Component  -->
+<template>
+<div class="heading">
+    <slot name="heading">
+</div>
+<div class="description">
+    <slot name="description">
+</div>
+</template>
+```
+
+---
+### Scopped Slots
+As said earlier the content inside will be able to access parent scope within the component .But sometime/ manytime we need to access some of the child Data in that case what to do ??
+So in that case the **Child Component will expose the data** and the parent component will access via **v-slot**
+![Scopped Slots](scoped-slots.svg "Title")
+#### example
+```html
+<Child>
+<slot v-expose_data="$data.propName" />
+</Child>
+<Parent>
+<Child>
+<template #default v-slot="childData">
+{{childData.expose_data}}
+</template>
+</Child>
+</Parent>
+``` 
